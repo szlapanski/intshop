@@ -17,7 +17,7 @@ class Message {
     }
   } 
   
-  public function getUserId($userId){
+  public function setUserId($userId){
     $query = "SELECT id FROM Users"
             . "WHERE id=" . $userId;
     $res = $conn->query($query);
