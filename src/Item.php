@@ -66,4 +66,16 @@ class Item {
   public function getStock(){
     return $this->stock;
   }
+  
+  public function displayPictures(){
+    $query = "SELECT path FROM ItemsPics JOIN Items
+              ON ItemsPics.itemId = Items.id
+              WHERE Items.id=" . $this->id;
+    $res = $conn->query($query);
+    
+    foreach ($res as $path){
+      echo '<img src="' . $path . '">';
+    }
+    
+  }
 }
