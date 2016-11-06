@@ -32,7 +32,7 @@ class User {
   }
   
   public function setEmail($email){
-    if(preg_match('^[_a-zA-Z0-9-]+(\.[_a-zA-Z0-9-]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]{1,})*\.([a-zA-Z]{2,}){1}$', $email)){
+    if(preg_match('/^[_a-zA-Z0-9-]+(\.[_a-zA-Z0-9-]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]{1,})*\.([a-zA-Z]{2,}){1}$/', $email)){
       $this->email = $email;
       return $this;
     } else {
@@ -63,6 +63,16 @@ class User {
   
   public function getPassword(){
     return $this->password;
+  }
+  
+  public function saveToDB($conn){
+    $query = "INSERT INTO  `intshopbase`.`Users` (`name` ,`surname` ,`email` ,`password`) VALUES ('".$this->name."',  '".$this->surname."',  '".$this->email."',  '".$this->password."')";
+    
+    if($conn->query($query)) {
+      return true;
+    } else {
+      echo "Nie udało się utworzyć użytkownika w bazie danych!";
+    }
   }
 }
 

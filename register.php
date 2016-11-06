@@ -1,3 +1,20 @@
+<?php
+
+error_reporting(E_ALL);
+
+require_once(__DIR__.'/connection.php');
+require_once(__DIR__.'/src/User.php');
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+  
+  $newUser = new User($_POST['name'], $_POST['surname'],$_POST['email'],$_POST['password']);
+  $newUser->saveToDB($conn);
+}
+
+?>
+
+
+
 <!--A Design by W3layouts 
 Author: W3layout
 Author URL: http://w3layouts.com
@@ -99,7 +116,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
       </button>
      
    </div> 
-   <!-- Collect the nav links, forms, and other content for toggling -->
+   <!-- Collect the nav links, 3s, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
         <ul class="nav navbar-nav nav_1">
             <li><a class="color" href="index.php">Home</a></li>
@@ -309,22 +326,22 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!--login-->
 <div class="container">
 		<div class="login">
-			<form>
+			<form method="POST">
 			<div class="col-md-6 login-do">
 			<div class="login-mail">
-					<input type="text" placeholder="Name" required="">
+					<input type="text" placeholder="Name" name="name">
 					<i  class="glyphicon glyphicon-user"></i>
 				</div>
 				<div class="login-mail">
-					<input type="text" placeholder="Phone Number" required="">
-					<i  class="glyphicon glyphicon-phone"></i>
+					<input type="text" placeholder="Surname" name="surname">
+					<i  class="glyphicon glyphicon-user"></i>
 				</div>
 				<div class="login-mail">
-					<input type="text" placeholder="Email" required="">
+					<input type="text" placeholder="Email" name="email">
 					<i  class="glyphicon glyphicon-envelope"></i>
 				</div>
 				<div class="login-mail">
-					<input type="password" placeholder="Password" required="">
+					<input type="password" placeholder="Password" name="password">
 					<i class="glyphicon glyphicon-lock"></i>
 				</div>
 				   <a class="news-letter " href="#">
